@@ -31,10 +31,9 @@ class GoogleReviewsServiceProvider extends ServiceProvider
         \Illuminate\Support\Facades\Blade::component('google-reviews::components.google-reviews', 'google-reviews');
 
         if ($this->app->runningInConsole()) {
-            // TODO(Task 10): register SyncReviewsCommand
-            // $this->commands([
-            //     \Cegem360\GoogleReviews\Console\SyncReviewsCommand::class,
-            // ]);
+            $this->commands([
+                \Cegem360\GoogleReviews\Console\SyncReviewsCommand::class,
+            ]);
 
             $this->publishes([
                 __DIR__.'/../config/google-reviews.php' => config_path('google-reviews.php'),
