@@ -23,7 +23,9 @@ cannot exceed this — it is an API limitation, not a package choice.
 - Tests: Pest v3 + Orchestra Testbench
 - Root namespace: `Cegem360\GoogleReviews`
 - Package name: `cegem360/laravel-google-reviews`
-- Service provider boilerplate: **spatie/laravel-package-tools**
+- Service provider: **hand-written `GoogleReviewsServiceProvider`**, zero extra
+  dependencies (no spatie/laravel-package-tools). It registers the config merge,
+  facade/manager binding, command, views, and the publish groups manually.
 
 ## 3. Architecture
 
@@ -134,5 +136,5 @@ Coverage:
 
 ## 10. Open items
 
-None. Single-place default with array support baked in; Spatie package-tools for
-the provider.
+None. Single-place default with array support baked in; hand-written service
+provider with zero extra dependencies.
