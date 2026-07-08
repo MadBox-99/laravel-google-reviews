@@ -21,4 +21,12 @@ class TestCase extends Orchestra
             'prefix' => '',
         ]);
     }
+
+    protected function defineDatabaseMigrations(): void
+    {
+        foreach (['create_google_review_places_table', 'create_google_reviews_table'] as $name) {
+            $migration = require __DIR__.'/../database/migrations/'.$name.'.php.stub';
+            $migration->up();
+        }
+    }
 }
