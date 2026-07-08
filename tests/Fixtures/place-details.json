@@ -1,0 +1,28 @@
+{
+    "id": "ChIJ-place-123",
+    "displayName": { "text": "Acme Kft.", "languageCode": "hu" },
+    "rating": 4.6,
+    "userRatingCount": 231,
+    "reviews": [
+        {
+            "name": "places/ChIJ-place-123/reviews/rev-1",
+            "rating": 5,
+            "text": { "text": "Kiváló szolgáltatás!", "languageCode": "hu" },
+            "authorAttribution": {
+                "displayName": "Kiss Anna",
+                "photoUri": "https://example.com/anna.jpg"
+            },
+            "publishTime": "2026-05-01T09:30:00Z"
+        },
+        {
+            "name": "places/ChIJ-place-123/reviews/rev-2",
+            "rating": 4,
+            "text": { "text": "Jó volt.", "languageCode": "hu" },
+            "authorAttribution": {
+                "displayName": "Nagy Béla",
+                "photoUri": null
+            },
+            "publishTime": "2026-04-15T18:00:00Z"
+        }
+    ]
+}
