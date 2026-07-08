@@ -23,6 +23,13 @@ class GoogleReviewsServiceProvider extends ServiceProvider
     {
         $this->loadViewsFrom(__DIR__.'/../resources/views', 'google-reviews');
 
+        $this->loadViewComponentsAs('google-reviews', []);
+        \Illuminate\Support\Facades\Blade::anonymousComponentPath(
+            __DIR__.'/../resources/views/components',
+            'google-reviews'
+        );
+        \Illuminate\Support\Facades\Blade::component('google-reviews::components.google-reviews', 'google-reviews');
+
         if ($this->app->runningInConsole()) {
             // TODO(Task 10): register SyncReviewsCommand
             // $this->commands([
