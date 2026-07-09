@@ -48,9 +48,9 @@ class SyncReviewsCommand extends Command
 
         $configured = $settings->placeId();
         if (is_array($configured)) {
-            return array_values(array_filter(array_map('strval', $configured)));
+            return array_values(array_filter(array_map(strval(...), $configured)));
         }
 
-        return $configured ? [(string) $configured] : [];
+        return $configured ? [$configured] : [];
     }
 }

@@ -4,7 +4,7 @@ use Cegem360\GoogleReviews\Http\GooglePlacesClient;
 use Cegem360\GoogleReviews\Settings\SettingsResolver;
 use Illuminate\Support\Facades\Http;
 
-it('maps the places api response into a PlaceData with reviews', function () {
+it('maps the places api response into a PlaceData with reviews', function (): void {
     config()->set('google-reviews.api_key', 'test-key');
 
     $body = json_decode(file_get_contents(__DIR__.'/../Fixtures/place-details.json'), true);
@@ -12,7 +12,7 @@ it('maps the places api response into a PlaceData with reviews', function () {
         'places.googleapis.com/*' => Http::response($body, 200),
     ]);
 
-    $client = new GooglePlacesClient(new SettingsResolver());
+    $client = new GooglePlacesClient(new SettingsResolver);
     $place = $client->fetch('ChIJ-place-123');
 
     expect($place->placeId)->toBe('ChIJ-place-123')
@@ -29,18 +29,18 @@ it('maps the places api response into a PlaceData with reviews', function () {
     Http::assertSent(fn ($request) => $request->hasHeader('X-Goog-Api-Key', 'test-key'));
 });
 
-it('throws when the api key is missing', function () {
-    config()->set('google-reviews.api_key', null);
+it('throws when the api key is missing', function (): void {
+    config()->set('google-reviews.api_key');
 
-    $client = new GooglePlacesClient(new SettingsResolver());
+    $client = new GooglePlacesClient(new SettingsResolver);
 
     $client->fetch('ChIJ-place-123');
 })->throws(RuntimeException::class);
 
-it('throws when the http request fails', function () {
+it('throws when the http request fails', function (): void {
     config()->set('google-reviews.api_key', 'test-key');
     Http::fake(['places.googleapis.com/*' => Http::response([], 500)]);
 
-    $client = new GooglePlacesClient(new SettingsResolver());
+    $client = new GooglePlacesClient(new SettingsResolver);
     $client->fetch('ChIJ-place-123');
 })->throws(RuntimeException::class);

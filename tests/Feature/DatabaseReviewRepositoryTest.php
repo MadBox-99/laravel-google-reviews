@@ -19,8 +19,8 @@ function samplePlace(): PlaceData
     );
 }
 
-it('stores and reads a place round-trip', function () {
-    $repo = new DatabaseReviewRepository();
+it('stores and reads a place round-trip', function (): void {
+    $repo = new DatabaseReviewRepository;
     $repo->store(samplePlace());
 
     $place = $repo->get('place-1');
@@ -31,16 +31,16 @@ it('stores and reads a place round-trip', function () {
         ->and($place->reviews)->toHaveCount(2);
 });
 
-it('upserts instead of duplicating on repeated store', function () {
-    $repo = new DatabaseReviewRepository();
+it('upserts instead of duplicating on repeated store', function (): void {
+    $repo = new DatabaseReviewRepository;
     $repo->store(samplePlace());
     $repo->store(samplePlace());
 
     expect(GoogleReview::where('place_id', 'place-1')->count())->toBe(2);
 });
 
-it('hides reviews flagged not visible', function () {
-    $repo = new DatabaseReviewRepository();
+it('hides reviews flagged not visible', function (): void {
+    $repo = new DatabaseReviewRepository;
     $repo->store(samplePlace());
     GoogleReview::where('google_review_id', 'r2')->update(['visible' => false]);
 
@@ -50,6 +50,6 @@ it('hides reviews flagged not visible', function () {
         ->and($place->reviews[0]->googleReviewId)->toBe('r1');
 });
 
-it('returns null for an unknown place', function () {
-    expect((new DatabaseReviewRepository())->get('nope'))->toBeNull();
+it('returns null for an unknown place', function (): void {
+    expect((new DatabaseReviewRepository)->get('nope'))->toBeNull();
 });

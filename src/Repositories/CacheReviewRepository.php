@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Cache;
 
 class CacheReviewRepository implements ReviewRepository
 {
-    public function __construct(private int $ttl = 86400) {}
+    public function __construct(private readonly int $ttl = 86400) {}
 
     public function store(PlaceData $place): void
     {

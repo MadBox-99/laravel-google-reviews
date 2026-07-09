@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Cegem360\GoogleReviews\Contracts;
 
 use Cegem360\GoogleReviews\Data\PlaceData;

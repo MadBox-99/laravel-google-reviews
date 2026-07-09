@@ -35,3 +35,30 @@ jobs:
 
       - name: Run Pest
         run: vendor/bin/pest
+
+  quality:
+    runs-on: ubuntu-latest
+    name: Pint · Rector · PHPStan
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+          extensions: dom, curl, libxml, mbstring, zip, pdo, sqlite, pdo_sqlite
+          coverage: none
+
+      - name: Install dependencies
+        run: composer update --prefer-dist --no-interaction --no-progress
+
+      - name: Pint (code style)
+        run: vendor/bin/pint --test
+
+      - name: Rector (dry-run)
+        run: vendor/bin/rector process --dry-run --no-progress-bar
+
+      - name: PHPStan
+        run: vendor/bin/phpstan analyse --no-progress

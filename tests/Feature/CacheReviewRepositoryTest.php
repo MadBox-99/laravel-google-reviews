@@ -4,7 +4,7 @@ use Cegem360\GoogleReviews\Data\PlaceData;
 use Cegem360\GoogleReviews\Data\ReviewData;
 use Cegem360\GoogleReviews\Repositories\CacheReviewRepository;
 
-it('stores and reads a place through the cache', function () {
+it('stores and reads a place through the cache', function (): void {
     $place = new PlaceData('place-1', 'Acme', 4.2, 50, [
         new ReviewData('r1', 'Anna', null, 5, 'Nice', 'hu', null),
     ]);
@@ -20,6 +20,6 @@ it('stores and reads a place through the cache', function () {
         ->and($restored->reviews[0]->authorName)->toBe('Anna');
 });
 
-it('returns null when nothing is cached', function () {
-    expect((new CacheReviewRepository())->get('missing'))->toBeNull();
+it('returns null when nothing is cached', function (): void {
+    expect((new CacheReviewRepository)->get('missing'))->toBeNull();
 });
