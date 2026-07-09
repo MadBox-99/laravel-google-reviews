@@ -9,7 +9,19 @@ class TestCase extends Orchestra
 {
     protected function getPackageProviders($app): array
     {
-        return [GoogleReviewsServiceProvider::class];
+        return [
+            GoogleReviewsServiceProvider::class,
+            \Livewire\LivewireServiceProvider::class,
+            \Filament\Support\SupportServiceProvider::class,
+            \Filament\Actions\ActionsServiceProvider::class,
+            \Filament\Schemas\SchemasServiceProvider::class,
+            \Filament\Forms\FormsServiceProvider::class,
+            \Filament\Infolists\InfolistsServiceProvider::class,
+            \Filament\Notifications\NotificationsServiceProvider::class,
+            \Filament\Tables\TablesServiceProvider::class,
+            \Filament\Widgets\WidgetsServiceProvider::class,
+            \Filament\FilamentServiceProvider::class,
+        ];
     }
 
     protected function defineEnvironment($app): void
@@ -20,6 +32,7 @@ class TestCase extends Orchestra
             'database' => ':memory:',
             'prefix' => '',
         ]);
+        $app['config']->set('session.driver', 'array');
     }
 
     protected function defineDatabaseMigrations(): void
