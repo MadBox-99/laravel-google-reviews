@@ -12,6 +12,9 @@ use Filament\Schemas\Schema;
 use Illuminate\Support\Facades\DB;
 use UnitEnum;
 
+/**
+ * @property-read Schema $form
+ */
 class GoogleReviewsSettings extends Page
 {
     protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-star';
@@ -27,7 +30,7 @@ class GoogleReviewsSettings extends Page
 
     public function mount(): void
     {
-        $settings = app(SettingsResolver::class);
+        $settings = resolve(SettingsResolver::class);
 
         $this->form->fill([
             'place_id' => is_array($settings->placeId())

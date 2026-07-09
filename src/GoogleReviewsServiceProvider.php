@@ -1,14 +1,20 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Cegem360\GoogleReviews;
 
+use Cegem360\GoogleReviews\Console\SyncReviewsCommand;
 use Cegem360\GoogleReviews\Http\GooglePlacesClient;
 use Cegem360\GoogleReviews\Repositories\ReviewRepositoryFactory;
 use Cegem360\GoogleReviews\Settings\SettingsResolver;
+use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
+use Override;
 
 class GoogleReviewsServiceProvider extends ServiceProvider
 {
+    #[Override]
     public function register(): void
     {
         $this->mergeConfigFrom(__DIR__.'/../config/google-reviews.php', 'google-reviews');
@@ -24,15 +30,15 @@ class GoogleReviewsServiceProvider extends ServiceProvider
         $this->loadViewsFrom(__DIR__.'/../resources/views', 'google-reviews');
 
         $this->loadViewComponentsAs('google-reviews', []);
-        \Illuminate\Support\Facades\Blade::anonymousComponentPath(
+        Blade::anonymousComponentPath(
             __DIR__.'/../resources/views/components',
             'google-reviews'
         );
-        \Illuminate\Support\Facades\Blade::component('google-reviews::components.google-reviews', 'google-reviews');
+        Blade::component('google-reviews::components.google-reviews', 'google-reviews');
 
         if ($this->app->runningInConsole()) {
             $this->commands([
-                \Cegem360\GoogleReviews\Console\SyncReviewsCommand::class,
+                SyncReviewsCommand::class,
             ]);
 
             $this->publishes([
@@ -40,12 +46,9 @@ class GoogleReviewsServiceProvider extends ServiceProvider
             ], 'google-reviews-config');
 
             $this->publishes([
-                __DIR__.'/../database/migrations/create_google_review_places_table.php.stub'
-                    => $this->migrationPath('create_google_review_places_table.php'),
-                __DIR__.'/../database/migrations/create_google_reviews_table.php.stub'
-                    => $this->migrationPath('create_google_reviews_table.php'),
-                __DIR__.'/../database/migrations/create_google_review_settings_table.php.stub'
-                    => $this->migrationPath('create_google_review_settings_table.php'),
+                __DIR__.'/../database/migrations/create_google_review_places_table.php.stub' => $this->migrationPath('create_google_review_places_table.php'),
+                __DIR__.'/../database/migrations/create_google_reviews_table.php.stub' => $this->migrationPath('create_google_reviews_table.php'),
+                __DIR__.'/../database/migrations/create_google_review_settings_table.php.stub' => $this->migrationPath('create_google_review_settings_table.php'),
             ], 'google-reviews-migrations');
 
             $this->publishes([

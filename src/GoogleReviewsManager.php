@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Cegem360\GoogleReviews;
 
 use Cegem360\GoogleReviews\Data\PlaceData;
@@ -11,9 +13,9 @@ use RuntimeException;
 class GoogleReviewsManager
 {
     public function __construct(
-        private GooglePlacesClient $client,
-        private ReviewRepositoryFactory $factory,
-        private SettingsResolver $settings,
+        private readonly GooglePlacesClient $client,
+        private readonly ReviewRepositoryFactory $factory,
+        private readonly SettingsResolver $settings,
     ) {}
 
     public function refresh(?string $placeId = null): PlaceData
@@ -41,9 +43,7 @@ class GoogleReviewsManager
             $configured = $configured[0] ?? null;
         }
 
-        if (! $configured) {
-            throw new RuntimeException('No Google place id configured.');
-        }
+        throw_unless($configured, RuntimeException::class, 'No Google place id configured.');
 
         return (string) $configured;
     }

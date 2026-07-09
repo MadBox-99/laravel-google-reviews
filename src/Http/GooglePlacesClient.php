@@ -11,18 +11,16 @@ use RuntimeException;
 
 class GooglePlacesClient
 {
-    private const BASE = 'https://places.googleapis.com/v1/places/';
+    private const string BASE = 'https://places.googleapis.com/v1/places/';
 
-    private const FIELD_MASK = 'id,displayName,rating,userRatingCount,reviews';
+    private const string FIELD_MASK = 'id,displayName,rating,userRatingCount,reviews';
 
-    public function __construct(private SettingsResolver $settings) {}
+    public function __construct(private readonly SettingsResolver $settings) {}
 
     public function fetch(string $placeId): PlaceData
     {
         $apiKey = $this->settings->apiKey();
-        if (! $apiKey) {
-            throw new RuntimeException('Google Places API key is not configured.');
-        }
+        throw_unless($apiKey, RuntimeException::class, 'Google Places API key is not configured.');
 
         $response = Http::withHeaders([
             'X-Goog-Api-Key' => $apiKey,
@@ -40,10 +38,13 @@ class GooglePlacesClient
         return $this->toPlaceData($placeId, $response->json());
     }
 
+    /**
+     * @param  array<string, mixed>  $data
+     */
     private function toPlaceData(string $placeId, array $data): PlaceData
     {
         $reviews = array_map(
-            fn (array $r) => $this->toReviewData($r),
+            $this->toReviewData(...),
             $data['reviews'] ?? [],
         );
 
@@ -56,6 +57,9 @@ class GooglePlacesClient
         );
     }
 
+    /**
+     * @param  array<string, mixed>  $r
+     */
     private function toReviewData(array $r): ReviewData
     {
         return new ReviewData(

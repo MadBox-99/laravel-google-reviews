@@ -4,12 +4,12 @@ use Cegem360\GoogleReviews\Data\PlaceData;
 use Cegem360\GoogleReviews\Data\ReviewData;
 use Cegem360\GoogleReviews\GoogleReviewsManager;
 
-it('renders the reviews component with place data', function () {
+it('renders the reviews component with place data', function (): void {
     $place = new PlaceData('place-1', 'Acme Kft.', 4.5, 100, [
         new ReviewData('r1', 'Kiss Anna', null, 5, 'Kiváló!', 'hu', null),
     ]);
 
-    $this->mock(GoogleReviewsManager::class, function ($mock) use ($place) {
+    $this->mock(GoogleReviewsManager::class, function ($mock) use ($place): void {
         $mock->shouldReceive('for')->andReturn($place);
     });
 
@@ -21,8 +21,8 @@ it('renders the reviews component with place data', function () {
         ->toContain('4.5');
 });
 
-it('renders a graceful empty state when no place data exists', function () {
-    $this->mock(GoogleReviewsManager::class, function ($mock) {
+it('renders a graceful empty state when no place data exists', function (): void {
+    $this->mock(GoogleReviewsManager::class, function ($mock): void {
         $mock->shouldReceive('for')->andReturn(null);
     });
 

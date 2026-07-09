@@ -26,14 +26,17 @@ class SettingsResolver
         return config('google-reviews.api_key');
     }
 
+    /**
+     * @return string|list<string>|null
+     */
     public function placeId(): string|array|null
     {
         $value = $this->get('place_id');
 
         if (is_string($value) && str_contains($value, ',')) {
             return array_values(array_filter(
-                array_map('trim', explode(',', $value)),
-                fn (string $v) => $v !== ''
+                array_map(trim(...), explode(',', $value)),
+                fn (string $v): bool => $v !== ''
             ));
         }
 

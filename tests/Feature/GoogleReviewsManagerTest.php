@@ -6,7 +6,7 @@ use Cegem360\GoogleReviews\Repositories\ReviewRepositoryFactory;
 use Cegem360\GoogleReviews\Settings\SettingsResolver;
 use Illuminate\Support\Facades\Http;
 
-beforeEach(function () {
+beforeEach(function (): void {
     $this->loadMigrationsFrom(__DIR__.'/../../database/migrations');
     config()->set('google-reviews.api_key', 'test-key');
     config()->set('google-reviews.driver', 'database');
@@ -18,7 +18,7 @@ beforeEach(function () {
 
 function makeManager(): GoogleReviewsManager
 {
-    $settings = new SettingsResolver();
+    $settings = new SettingsResolver;
 
     return new GoogleReviewsManager(
         new GooglePlacesClient($settings),
@@ -27,7 +27,7 @@ function makeManager(): GoogleReviewsManager
     );
 }
 
-it('refreshes from the api and stores, then reads back', function () {
+it('refreshes from the api and stores, then reads back', function (): void {
     $manager = makeManager();
 
     $fetched = $manager->refresh();
@@ -39,7 +39,7 @@ it('refreshes from the api and stores, then reads back', function () {
         ->and($stored->reviews)->toHaveCount(2);
 });
 
-it('resolves place id from an explicit argument over settings', function () {
+it('resolves place id from an explicit argument over settings', function (): void {
     $manager = makeManager();
 
     $fetched = $manager->refresh('ChIJ-place-123');

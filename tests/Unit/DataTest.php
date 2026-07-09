@@ -3,7 +3,7 @@
 use Cegem360\GoogleReviews\Data\PlaceData;
 use Cegem360\GoogleReviews\Data\ReviewData;
 
-it('round-trips review data through array', function () {
+it('round-trips review data through array', function (): void {
     $review = new ReviewData(
         googleReviewId: 'abc',
         authorName: 'Jane',
@@ -21,7 +21,7 @@ it('round-trips review data through array', function () {
         ->and($restored->publishedAt?->format('c'))->toBe('2026-01-01T10:00:00+00:00');
 });
 
-it('round-trips place data with nested reviews', function () {
+it('round-trips place data with nested reviews', function (): void {
     $place = new PlaceData(
         placeId: 'place-1',
         name: 'Acme',

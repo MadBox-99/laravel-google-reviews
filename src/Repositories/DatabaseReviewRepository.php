@@ -50,7 +50,7 @@ class DatabaseReviewRepository implements ReviewRepository
             ->where('visible', true)
             ->orderByDesc('published_at')
             ->get()
-            ->map(fn (GoogleReview $r) => new ReviewData(
+            ->map(fn (GoogleReview $r): ReviewData => new ReviewData(
                 googleReviewId: $r->google_review_id,
                 authorName: $r->author_name,
                 authorPhotoUrl: $r->author_photo_url,
