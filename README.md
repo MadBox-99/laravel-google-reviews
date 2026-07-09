@@ -7,7 +7,7 @@ Fetch and display [Google Places](https://developers.google.com/maps/documentati
 ## Requirements
 
 - PHP 8.3+
-- Laravel 12
+- Laravel 12 or 13
 - Filament 4 or 5 (optional — only needed for the admin settings page)
 
 ## Install
