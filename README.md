@@ -8,7 +8,7 @@ Fetch and display [Google Places](https://developers.google.com/maps/documentati
 
 - PHP 8.3+
 - Laravel 12
-- Filament 4 (optional — only needed for the admin settings page)
+- Filament 4 or 5 (optional — only needed for the admin settings page)
 
 ## Install
 
@@ -106,7 +106,7 @@ foreach ($place->reviews as $review) {
 
 ## Filament
 
-The package ships an optional Filament 4 plugin that adds a **Google Reviews** settings page (edit place ID, driver, cache TTL, language; the API key is shown read-only since it lives in `.env`).
+The package ships an optional Filament 4/5 plugin that adds a **Google Reviews** settings page (edit place ID, driver, cache TTL, language; the API key is shown read-only since it lives in `.env`).
 
 Register it in your panel provider:
 
