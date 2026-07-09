@@ -34,7 +34,7 @@
                         @endif
                         <span class="font-medium">{{ $review->authorName }}</span>
                         <span class="text-yellow-500" aria-label="{{ $review->rating }} / 5">
-                            {{ str_repeat('★', $review->rating) }}{{ str_repeat('☆', 5 - $review->rating) }}
+                            {{ str_repeat('★', max(0, min(5, $review->rating))) }}{{ str_repeat('☆', max(0, 5 - min(5, $review->rating))) }}
                         </span>
                     </div>
                     <p class="google-reviews__text text-gray-700">{{ $review->text }}</p>

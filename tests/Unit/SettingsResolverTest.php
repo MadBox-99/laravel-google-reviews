@@ -38,3 +38,53 @@ it('lets DB settings override config, except api_key', function () {
         ->and($resolver->placeId())->toBe('db-place')
         ->and($resolver->apiKey())->toBe('env-key');
 });
+
+it('splits a comma-separated DB place_id into a trimmed array', function () {
+    Schema::create('google_review_settings', function ($table) {
+        $table->id();
+        $table->string('key')->unique();
+        $table->text('value')->nullable();
+        $table->timestamps();
+    });
+    DB::table('google_review_settings')->insert([
+        ['key' => 'place_id', 'value' => 'ChIJ-aaa, ChIJ-bbb'],
+    ]);
+
+    $resolver = new SettingsResolver();
+
+    expect($resolver->placeId())->toBe(['ChIJ-aaa', 'ChIJ-bbb']);
+});
+
+it('returns a single DB place_id as a plain string', function () {
+    Schema::create('google_review_settings', function ($table) {
+        $table->id();
+        $table->string('key')->unique();
+        $table->text('value')->nullable();
+        $table->timestamps();
+    });
+    DB::table('google_review_settings')->insert([
+        ['key' => 'place_id', 'value' => 'ChIJ-solo'],
+    ]);
+
+    $resolver = new SettingsResolver();
+
+    expect($resolver->placeId())->toBe('ChIJ-solo');
+});
+
+it('falls back to config cache_ttl when the DB value is an empty string', function () {
+    config()->set('google-reviews.cache_ttl', 86400);
+
+    Schema::create('google_review_settings', function ($table) {
+        $table->id();
+        $table->string('key')->unique();
+        $table->text('value')->nullable();
+        $table->timestamps();
+    });
+    DB::table('google_review_settings')->insert([
+        ['key' => 'cache_ttl', 'value' => ''],
+    ]);
+
+    $resolver = new SettingsResolver();
+
+    expect($resolver->cacheTtl())->toBe(86400);
+});

@@ -28,7 +28,16 @@ class SettingsResolver
 
     public function placeId(): string|array|null
     {
-        return $this->get('place_id');
+        $value = $this->get('place_id');
+
+        if (is_string($value) && str_contains($value, ',')) {
+            return array_values(array_filter(
+                array_map('trim', explode(',', $value)),
+                fn (string $v) => $v !== ''
+            ));
+        }
+
+        return $value;
     }
 
     public function driver(): string
@@ -56,7 +65,13 @@ class SettingsResolver
             $this->dbCache = $this->loadDatabaseSettings();
         }
 
-        return $this->dbCache[$key] ?? null;
+        $value = $this->dbCache[$key] ?? null;
+
+        if ($value !== null && trim($value) === '') {
+            return null;
+        }
+
+        return $value;
     }
 
     /** @return array<string,string|null> */
