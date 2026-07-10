@@ -1,8 +1,8 @@
 <?php
 
-namespace Cegem360\GoogleReviews\Filament;
+namespace Madbox99\GoogleReviews\Filament;
 
-use Cegem360\GoogleReviews\Filament\Pages\GoogleReviewsSettings;
+use Madbox99\GoogleReviews\Filament\Pages\GoogleReviewsSettings;
 use Filament\Contracts\Plugin;
 use Filament\Panel;
 

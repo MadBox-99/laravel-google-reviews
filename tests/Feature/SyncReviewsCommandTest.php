@@ -1,6 +1,6 @@
 <?php
 
-use Cegem360\GoogleReviews\Models\GoogleReview;
+use Madbox99\GoogleReviews\Models\GoogleReview;
 use Illuminate\Http\Client\Factory;
 use Illuminate\Support\Facades\Http;
 

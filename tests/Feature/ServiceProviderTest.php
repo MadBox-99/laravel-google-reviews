@@ -1,7 +1,7 @@
 <?php
 
-use Cegem360\GoogleReviews\GoogleReviewsManager;
-use Cegem360\GoogleReviews\Settings\SettingsResolver;
+use Madbox99\GoogleReviews\GoogleReviewsManager;
+use Madbox99\GoogleReviews\Settings\SettingsResolver;
 
 it('binds the manager and settings resolver as singletons', function (): void {
     expect(resolve(GoogleReviewsManager::class))->toBeInstanceOf(GoogleReviewsManager::class)

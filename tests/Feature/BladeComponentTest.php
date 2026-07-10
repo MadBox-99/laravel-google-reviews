@@ -1,8 +1,8 @@
 <?php
 
-use Cegem360\GoogleReviews\Data\PlaceData;
-use Cegem360\GoogleReviews\Data\ReviewData;
-use Cegem360\GoogleReviews\GoogleReviewsManager;
+use Madbox99\GoogleReviews\Data\PlaceData;
+use Madbox99\GoogleReviews\Data\ReviewData;
+use Madbox99\GoogleReviews\GoogleReviewsManager;
 
 it('renders the reviews component with place data', function (): void {
     $place = new PlaceData('place-1', 'Acme Kft.', 4.5, 100, [

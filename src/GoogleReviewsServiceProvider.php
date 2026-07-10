@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Cegem360\GoogleReviews;
+namespace Madbox99\GoogleReviews;
 
-use Cegem360\GoogleReviews\Console\SyncReviewsCommand;
-use Cegem360\GoogleReviews\Http\GooglePlacesClient;
-use Cegem360\GoogleReviews\Repositories\ReviewRepositoryFactory;
-use Cegem360\GoogleReviews\Settings\SettingsResolver;
+use Madbox99\GoogleReviews\Console\SyncReviewsCommand;
+use Madbox99\GoogleReviews\Http\GooglePlacesClient;
+use Madbox99\GoogleReviews\Repositories\ReviewRepositoryFactory;
+use Madbox99\GoogleReviews\Settings\SettingsResolver;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
 use Override;

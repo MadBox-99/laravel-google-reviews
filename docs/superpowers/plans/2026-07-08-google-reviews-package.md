@@ -11,7 +11,7 @@
 ## Global Constraints
 
 - PHP `^8.3`; Laravel (`illuminate/*`) `^12.0`; Filament `^4.0` as an **optional** dependency (`suggest` + `require-dev`), feature-detected at runtime.
-- Root namespace: `Cegem360\GoogleReviews` → `src/`. Test namespace: `Cegem360\GoogleReviews\Tests` → `tests/`.
+- Root namespace: `Madbox99\GoogleReviews` → `src/`. Test namespace: `Madbox99\GoogleReviews\Tests` → `tests/`.
 - **Zero extra runtime dependencies** beyond the Laravel framework — no `spatie/laravel-package-tools`. Hand-written `GoogleReviewsServiceProvider`.
 - Google Places API (New) returns **at most 5 reviews per place**; never assume more.
 - API key is resolved from **env/config only, never from the DB**. All other settings resolve **DB → config → env**.
@@ -72,7 +72,7 @@ tests/
 
 **Interfaces:**
 - Consumes: nothing.
-- Produces: `Cegem360\GoogleReviews\Tests\TestCase` (base test case booting the package provider via Testbench); PSR-4 autoload for `Cegem360\GoogleReviews\` → `src/` and `Cegem360\GoogleReviews\Tests\` → `tests/`. Provider class `Cegem360\GoogleReviews\GoogleReviewsServiceProvider` is referenced here and created in Task 8 — a placeholder empty provider is created in this task so the suite boots.
+- Produces: `Madbox99\GoogleReviews\Tests\TestCase` (base test case booting the package provider via Testbench); PSR-4 autoload for `Madbox99\GoogleReviews\` → `src/` and `Madbox99\GoogleReviews\Tests\` → `tests/`. Provider class `Madbox99\GoogleReviews\GoogleReviewsServiceProvider` is referenced here and created in Task 8 — a placeholder empty provider is created in this task so the suite boots.
 
 - [ ] **Step 1: Create `composer.json`**
 
@@ -100,21 +100,21 @@ tests/
     },
     "autoload": {
         "psr-4": {
-            "Cegem360\\GoogleReviews\\": "src/"
+            "Madbox99\\GoogleReviews\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Cegem360\\GoogleReviews\\Tests\\": "tests/"
+            "Madbox99\\GoogleReviews\\Tests\\": "tests/"
         }
     },
     "extra": {
         "laravel": {
             "providers": [
-                "Cegem360\\GoogleReviews\\GoogleReviewsServiceProvider"
+                "Madbox99\\GoogleReviews\\GoogleReviewsServiceProvider"
             ],
             "aliases": {
-                "GoogleReviews": "Cegem360\\GoogleReviews\\Facades\\GoogleReviews"
+                "GoogleReviews": "Madbox99\\GoogleReviews\\Facades\\GoogleReviews"
             }
         }
     },
@@ -135,7 +135,7 @@ Create `src/GoogleReviewsServiceProvider.php`:
 ```php
 <?php
 
-namespace Cegem360\GoogleReviews;
+namespace Madbox99\GoogleReviews;
 
 use Illuminate\Support\ServiceProvider;
 
@@ -158,9 +158,9 @@ class GoogleReviewsServiceProvider extends ServiceProvider
 ```php
 <?php
 
-namespace Cegem360\GoogleReviews\Tests;
+namespace Madbox99\GoogleReviews\Tests;
 
-use Cegem360\GoogleReviews\GoogleReviewsServiceProvider;
+use Madbox99\GoogleReviews\GoogleReviewsServiceProvider;
 use Orchestra\Testbench\TestCase as Orchestra;
 
 class TestCase extends Orchestra
@@ -187,7 +187,7 @@ class TestCase extends Orchestra
 ```php
 <?php
 
-use Cegem360\GoogleReviews\Tests\TestCase;
+use Madbox99\GoogleReviews\Tests\TestCase;
 
 uses(TestCase::class)->in('Unit', 'Feature');
 ```
@@ -244,8 +244,8 @@ Create `tests/Unit/DataTest.php`:
 ```php
 <?php
 
-use Cegem360\GoogleReviews\Data\PlaceData;
-use Cegem360\GoogleReviews\Data\ReviewData;
+use Madbox99\GoogleReviews\Data\PlaceData;
+use Madbox99\GoogleReviews\Data\ReviewData;
 
 it('round-trips review data through array', function () {
     $review = new ReviewData(
@@ -295,7 +295,7 @@ Create `src/Data/ReviewData.php`:
 ```php
 <?php
 
-namespace Cegem360\GoogleReviews\Data;
+namespace Madbox99\GoogleReviews\Data;
 
 use DateTimeImmutable;
 
@@ -348,7 +348,7 @@ Create `src/Data/PlaceData.php`:
 ```php
 <?php
 
-namespace Cegem360\GoogleReviews\Data;
+namespace Madbox99\GoogleReviews\Data;
 
 final readonly class PlaceData
 {
@@ -475,7 +475,7 @@ Create `tests/Unit/SettingsResolverTest.php`:
 ```php
 <?php
 
-use Cegem360\GoogleReviews\Settings\SettingsResolver;
+use Madbox99\GoogleReviews\Settings\SettingsResolver;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\DB;
 
@@ -527,7 +527,7 @@ Create `src/Settings/SettingsResolver.php`:
 ```php
 <?php
 
-namespace Cegem360\GoogleReviews\Settings;
+namespace Madbox99\GoogleReviews\Settings;
 
 use Illuminate\Support\Facades\DB;
 use Throwable;
@@ -667,8 +667,8 @@ Create `tests/Unit/GooglePlacesClientTest.php`:
 ```php
 <?php
 
-use Cegem360\GoogleReviews\Http\GooglePlacesClient;
-use Cegem360\GoogleReviews\Settings\SettingsResolver;
+use Madbox99\GoogleReviews\Http\GooglePlacesClient;
+use Madbox99\GoogleReviews\Settings\SettingsResolver;
 use Illuminate\Support\Facades\Http;
 
 it('maps the places api response into a PlaceData with reviews', function () {
@@ -717,11 +717,11 @@ Create `src/Http/GooglePlacesClient.php`:
 ```php
 <?php
 
-namespace Cegem360\GoogleReviews\Http;
+namespace Madbox99\GoogleReviews\Http;
 
-use Cegem360\GoogleReviews\Data\PlaceData;
-use Cegem360\GoogleReviews\Data\ReviewData;
-use Cegem360\GoogleReviews\Settings\SettingsResolver;
+use Madbox99\GoogleReviews\Data\PlaceData;
+use Madbox99\GoogleReviews\Data\ReviewData;
+use Madbox99\GoogleReviews\Settings\SettingsResolver;
 use DateTimeImmutable;
 use Illuminate\Support\Facades\Http;
 use RuntimeException;
@@ -898,9 +898,9 @@ Create `src/Contracts/ReviewRepository.php`:
 ```php
 <?php
 
-namespace Cegem360\GoogleReviews\Contracts;
+namespace Madbox99\GoogleReviews\Contracts;
 
-use Cegem360\GoogleReviews\Data\PlaceData;
+use Madbox99\GoogleReviews\Data\PlaceData;
 
 interface ReviewRepository
 {
@@ -917,7 +917,7 @@ Create `src/Models/GoogleReviewPlace.php`:
 ```php
 <?php
 
-namespace Cegem360\GoogleReviews\Models;
+namespace Madbox99\GoogleReviews\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -940,7 +940,7 @@ Create `src/Models/GoogleReview.php`:
 ```php
 <?php
 
-namespace Cegem360\GoogleReviews\Models;
+namespace Madbox99\GoogleReviews\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -966,10 +966,10 @@ Create `tests/Feature/DatabaseReviewRepositoryTest.php`:
 ```php
 <?php
 
-use Cegem360\GoogleReviews\Data\PlaceData;
-use Cegem360\GoogleReviews\Data\ReviewData;
-use Cegem360\GoogleReviews\Models\GoogleReview;
-use Cegem360\GoogleReviews\Repositories\DatabaseReviewRepository;
+use Madbox99\GoogleReviews\Data\PlaceData;
+use Madbox99\GoogleReviews\Data\ReviewData;
+use Madbox99\GoogleReviews\Models\GoogleReview;
+use Madbox99\GoogleReviews\Repositories\DatabaseReviewRepository;
 
 beforeEach(function () {
     $this->loadMigrationsFrom(__DIR__.'/../../database/migrations');
@@ -1037,13 +1037,13 @@ Create `src/Repositories/DatabaseReviewRepository.php`:
 ```php
 <?php
 
-namespace Cegem360\GoogleReviews\Repositories;
+namespace Madbox99\GoogleReviews\Repositories;
 
-use Cegem360\GoogleReviews\Contracts\ReviewRepository;
-use Cegem360\GoogleReviews\Data\PlaceData;
-use Cegem360\GoogleReviews\Data\ReviewData;
-use Cegem360\GoogleReviews\Models\GoogleReview;
-use Cegem360\GoogleReviews\Models\GoogleReviewPlace;
+use Madbox99\GoogleReviews\Contracts\ReviewRepository;
+use Madbox99\GoogleReviews\Data\PlaceData;
+use Madbox99\GoogleReviews\Data\ReviewData;
+use Madbox99\GoogleReviews\Models\GoogleReview;
+use Madbox99\GoogleReviews\Models\GoogleReviewPlace;
 use DateTimeImmutable;
 
 class DatabaseReviewRepository implements ReviewRepository
@@ -1146,9 +1146,9 @@ Create `tests/Feature/CacheReviewRepositoryTest.php`:
 ```php
 <?php
 
-use Cegem360\GoogleReviews\Data\PlaceData;
-use Cegem360\GoogleReviews\Data\ReviewData;
-use Cegem360\GoogleReviews\Repositories\CacheReviewRepository;
+use Madbox99\GoogleReviews\Data\PlaceData;
+use Madbox99\GoogleReviews\Data\ReviewData;
+use Madbox99\GoogleReviews\Repositories\CacheReviewRepository;
 
 it('stores and reads a place through the cache', function () {
     $place = new PlaceData('place-1', 'Acme', 4.2, 50, [
@@ -1183,10 +1183,10 @@ Create `src/Repositories/CacheReviewRepository.php`:
 ```php
 <?php
 
-namespace Cegem360\GoogleReviews\Repositories;
+namespace Madbox99\GoogleReviews\Repositories;
 
-use Cegem360\GoogleReviews\Contracts\ReviewRepository;
-use Cegem360\GoogleReviews\Data\PlaceData;
+use Madbox99\GoogleReviews\Contracts\ReviewRepository;
+use Madbox99\GoogleReviews\Data\PlaceData;
 use Illuminate\Support\Facades\Cache;
 
 class CacheReviewRepository implements ReviewRepository
@@ -1224,10 +1224,10 @@ Create `tests/Unit/ReviewRepositoryFactoryTest.php`:
 ```php
 <?php
 
-use Cegem360\GoogleReviews\Repositories\CacheReviewRepository;
-use Cegem360\GoogleReviews\Repositories\DatabaseReviewRepository;
-use Cegem360\GoogleReviews\Repositories\ReviewRepositoryFactory;
-use Cegem360\GoogleReviews\Settings\SettingsResolver;
+use Madbox99\GoogleReviews\Repositories\CacheReviewRepository;
+use Madbox99\GoogleReviews\Repositories\DatabaseReviewRepository;
+use Madbox99\GoogleReviews\Repositories\ReviewRepositoryFactory;
+use Madbox99\GoogleReviews\Settings\SettingsResolver;
 
 it('builds the database repository by default', function () {
     config()->set('google-reviews.driver', 'database');
@@ -1258,10 +1258,10 @@ Create `src/Repositories/ReviewRepositoryFactory.php`:
 ```php
 <?php
 
-namespace Cegem360\GoogleReviews\Repositories;
+namespace Madbox99\GoogleReviews\Repositories;
 
-use Cegem360\GoogleReviews\Contracts\ReviewRepository;
-use Cegem360\GoogleReviews\Settings\SettingsResolver;
+use Madbox99\GoogleReviews\Contracts\ReviewRepository;
+use Madbox99\GoogleReviews\Settings\SettingsResolver;
 
 class ReviewRepositoryFactory
 {
@@ -1304,7 +1304,7 @@ git commit -m "feat: add cache driver and repository factory"
   - `refresh(?string $placeId = null): PlaceData` — resolves place id (arg → settings; if settings returns an array, uses the first), fetches via client, stores via active repo, returns the `PlaceData`.
   - `for(?string $placeId = null): ?PlaceData` — reads from active repo; returns null if absent.
   - `resolvePlaceId(?string $placeId): string` — arg wins, else first of settings `place_id`, throws `RuntimeException` if none.
-  - Facade `GoogleReviews` with accessor returning the manager binding `Cegem360\GoogleReviews\GoogleReviewsManager`.
+  - Facade `GoogleReviews` with accessor returning the manager binding `Madbox99\GoogleReviews\GoogleReviewsManager`.
 
 - [ ] **Step 1: Write the failing test**
 
@@ -1313,7 +1313,7 @@ Create `tests/Feature/GoogleReviewsManagerTest.php`:
 ```php
 <?php
 
-use Cegem360\GoogleReviews\GoogleReviewsManager;
+use Madbox99\GoogleReviews\GoogleReviewsManager;
 use Illuminate\Support\Facades\Http;
 
 beforeEach(function () {
@@ -1356,9 +1356,9 @@ Expected: FAIL — target class `GoogleReviewsManager` not resolvable / not foun
 Replace the `app(GoogleReviewsManager::class)` calls with a manual construction so the task is independently runnable:
 
 ```php
-use Cegem360\GoogleReviews\Http\GooglePlacesClient;
-use Cegem360\GoogleReviews\Repositories\ReviewRepositoryFactory;
-use Cegem360\GoogleReviews\Settings\SettingsResolver;
+use Madbox99\GoogleReviews\Http\GooglePlacesClient;
+use Madbox99\GoogleReviews\Repositories\ReviewRepositoryFactory;
+use Madbox99\GoogleReviews\Settings\SettingsResolver;
 
 function makeManager(): GoogleReviewsManager
 {
@@ -1381,12 +1381,12 @@ Create `src/GoogleReviewsManager.php`:
 ```php
 <?php
 
-namespace Cegem360\GoogleReviews;
+namespace Madbox99\GoogleReviews;
 
-use Cegem360\GoogleReviews\Data\PlaceData;
-use Cegem360\GoogleReviews\Http\GooglePlacesClient;
-use Cegem360\GoogleReviews\Repositories\ReviewRepositoryFactory;
-use Cegem360\GoogleReviews\Settings\SettingsResolver;
+use Madbox99\GoogleReviews\Data\PlaceData;
+use Madbox99\GoogleReviews\Http\GooglePlacesClient;
+use Madbox99\GoogleReviews\Repositories\ReviewRepositoryFactory;
+use Madbox99\GoogleReviews\Settings\SettingsResolver;
 use RuntimeException;
 
 class GoogleReviewsManager
@@ -1438,16 +1438,16 @@ Create `src/Facades/GoogleReviews.php`:
 ```php
 <?php
 
-namespace Cegem360\GoogleReviews\Facades;
+namespace Madbox99\GoogleReviews\Facades;
 
-use Cegem360\GoogleReviews\GoogleReviewsManager;
+use Madbox99\GoogleReviews\GoogleReviewsManager;
 use Illuminate\Support\Facades\Facade;
 
 /**
- * @method static \Cegem360\GoogleReviews\Data\PlaceData refresh(?string $placeId = null)
- * @method static \Cegem360\GoogleReviews\Data\PlaceData|null for(?string $placeId = null)
+ * @method static \Madbox99\GoogleReviews\Data\PlaceData refresh(?string $placeId = null)
+ * @method static \Madbox99\GoogleReviews\Data\PlaceData|null for(?string $placeId = null)
  *
- * @see \Cegem360\GoogleReviews\GoogleReviewsManager
+ * @see \Madbox99\GoogleReviews\GoogleReviewsManager
  */
 class GoogleReviews extends Facade
 {
@@ -1495,8 +1495,8 @@ Create `tests/Feature/ServiceProviderTest.php`:
 ```php
 <?php
 
-use Cegem360\GoogleReviews\GoogleReviewsManager;
-use Cegem360\GoogleReviews\Settings\SettingsResolver;
+use Madbox99\GoogleReviews\GoogleReviewsManager;
+use Madbox99\GoogleReviews\Settings\SettingsResolver;
 
 it('binds the manager and settings resolver as singletons', function () {
     expect(app(GoogleReviewsManager::class))->toBeInstanceOf(GoogleReviewsManager::class)
@@ -1520,11 +1520,11 @@ Replace `src/GoogleReviewsServiceProvider.php` entirely:
 ```php
 <?php
 
-namespace Cegem360\GoogleReviews;
+namespace Madbox99\GoogleReviews;
 
-use Cegem360\GoogleReviews\Http\GooglePlacesClient;
-use Cegem360\GoogleReviews\Repositories\ReviewRepositoryFactory;
-use Cegem360\GoogleReviews\Settings\SettingsResolver;
+use Madbox99\GoogleReviews\Http\GooglePlacesClient;
+use Madbox99\GoogleReviews\Repositories\ReviewRepositoryFactory;
+use Madbox99\GoogleReviews\Settings\SettingsResolver;
 use Illuminate\Support\ServiceProvider;
 
 class GoogleReviewsServiceProvider extends ServiceProvider
@@ -1545,7 +1545,7 @@ class GoogleReviewsServiceProvider extends ServiceProvider
 
         if ($this->app->runningInConsole()) {
             $this->commands([
-                \Cegem360\GoogleReviews\Console\SyncReviewsCommand::class,
+                \Madbox99\GoogleReviews\Console\SyncReviewsCommand::class,
             ]);
 
             $this->publishes([
@@ -1631,9 +1631,9 @@ Create `tests/Feature/BladeComponentTest.php`:
 ```php
 <?php
 
-use Cegem360\GoogleReviews\GoogleReviewsManager;
-use Cegem360\GoogleReviews\Data\PlaceData;
-use Cegem360\GoogleReviews\Data\ReviewData;
+use Madbox99\GoogleReviews\GoogleReviewsManager;
+use Madbox99\GoogleReviews\Data\PlaceData;
+use Madbox99\GoogleReviews\Data\ReviewData;
 
 it('renders the reviews component with place data', function () {
     $place = new PlaceData('place-1', 'Acme Kft.', 4.5, 100, [
@@ -1676,7 +1676,7 @@ Create `resources/views/components/google-reviews.blade.php`:
 @props(['placeId' => null, 'limit' => null])
 
 @php
-    $place = app(\Cegem360\GoogleReviews\GoogleReviewsManager::class)->for($placeId);
+    $place = app(\Madbox99\GoogleReviews\GoogleReviewsManager::class)->for($placeId);
     $reviews = $place?->reviews ?? [];
     if ($limit) {
         $reviews = array_slice($reviews, 0, (int) $limit);
@@ -1756,7 +1756,7 @@ Create `tests/Feature/SyncReviewsCommandTest.php`:
 ```php
 <?php
 
-use Cegem360\GoogleReviews\Models\GoogleReview;
+use Madbox99\GoogleReviews\Models\GoogleReview;
 use Illuminate\Support\Facades\Http;
 
 beforeEach(function () {
@@ -1796,10 +1796,10 @@ Create `src/Console/SyncReviewsCommand.php`:
 ```php
 <?php
 
-namespace Cegem360\GoogleReviews\Console;
+namespace Madbox99\GoogleReviews\Console;
 
-use Cegem360\GoogleReviews\GoogleReviewsManager;
-use Cegem360\GoogleReviews\Settings\SettingsResolver;
+use Madbox99\GoogleReviews\GoogleReviewsManager;
+use Madbox99\GoogleReviews\Settings\SettingsResolver;
 use Illuminate\Console\Command;
 use RuntimeException;
 
@@ -1893,7 +1893,7 @@ Create `tests/Feature/FilamentPluginTest.php`:
 ```php
 <?php
 
-use Cegem360\GoogleReviews\Filament\GoogleReviewsPlugin;
+use Madbox99\GoogleReviews\Filament\GoogleReviewsPlugin;
 
 it('exposes a stable plugin id', function () {
     if (! class_exists(\Filament\Contracts\Plugin::class)) {
@@ -1916,9 +1916,9 @@ Create `src/Filament/GoogleReviewsPlugin.php`:
 ```php
 <?php
 
-namespace Cegem360\GoogleReviews\Filament;
+namespace Madbox99\GoogleReviews\Filament;
 
-use Cegem360\GoogleReviews\Filament\Pages\GoogleReviewsSettings;
+use Madbox99\GoogleReviews\Filament\Pages\GoogleReviewsSettings;
 use Filament\Contracts\Plugin;
 use Filament\Panel;
 
@@ -1955,9 +1955,9 @@ Create `src/Filament/Pages/GoogleReviewsSettings.php`:
 ```php
 <?php
 
-namespace Cegem360\GoogleReviews\Filament\Pages;
+namespace Madbox99\GoogleReviews\Filament\Pages;
 
-use Cegem360\GoogleReviews\Settings\SettingsResolver;
+use Madbox99\GoogleReviews\Settings\SettingsResolver;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Concerns\InteractsWithForms;
@@ -2156,7 +2156,7 @@ php artisan vendor:publish --tag=google-reviews-views
 ## Facade
 
 ```php
-use Cegem360\GoogleReviews\Facades\GoogleReviews;
+use Madbox99\GoogleReviews\Facades\GoogleReviews;
 
 $place = GoogleReviews::for();        // read stored/cached reviews
 $place = GoogleReviews::refresh();    // fetch fresh from Google and store
@@ -2167,7 +2167,7 @@ $place = GoogleReviews::refresh();    // fetch fresh from Google and store
 Add the plugin to your panel provider:
 
 ```php
-use Cegem360\GoogleReviews\Filament\GoogleReviewsPlugin;
+use Madbox99\GoogleReviews\Filament\GoogleReviewsPlugin;
 
 $panel->plugin(GoogleReviewsPlugin::make());
 ```

@@ -1,8 +1,8 @@
 <?php
 
-use Cegem360\GoogleReviews\Data\PlaceData;
-use Cegem360\GoogleReviews\Data\ReviewData;
-use Cegem360\GoogleReviews\Repositories\CacheReviewRepository;
+use Madbox99\GoogleReviews\Data\PlaceData;
+use Madbox99\GoogleReviews\Data\ReviewData;
+use Madbox99\GoogleReviews\Repositories\CacheReviewRepository;
 
 it('stores and reads a place through the cache', function (): void {
     $place = new PlaceData('place-1', 'Acme', 4.2, 50, [

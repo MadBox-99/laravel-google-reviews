@@ -1,12 +1,12 @@
 <?php
 
-namespace Cegem360\GoogleReviews\Repositories;
+namespace Madbox99\GoogleReviews\Repositories;
 
-use Cegem360\GoogleReviews\Contracts\ReviewRepository;
-use Cegem360\GoogleReviews\Data\PlaceData;
-use Cegem360\GoogleReviews\Data\ReviewData;
-use Cegem360\GoogleReviews\Models\GoogleReview;
-use Cegem360\GoogleReviews\Models\GoogleReviewPlace;
+use Madbox99\GoogleReviews\Contracts\ReviewRepository;
+use Madbox99\GoogleReviews\Data\PlaceData;
+use Madbox99\GoogleReviews\Data\ReviewData;
+use Madbox99\GoogleReviews\Models\GoogleReview;
+use Madbox99\GoogleReviews\Models\GoogleReviewPlace;
 use DateTimeImmutable;
 
 class DatabaseReviewRepository implements ReviewRepository

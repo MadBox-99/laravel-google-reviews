@@ -1,9 +1,9 @@
 <?php
 
-namespace Cegem360\GoogleReviews\Repositories;
+namespace Madbox99\GoogleReviews\Repositories;
 
-use Cegem360\GoogleReviews\Contracts\ReviewRepository;
-use Cegem360\GoogleReviews\Settings\SettingsResolver;
+use Madbox99\GoogleReviews\Contracts\ReviewRepository;
+use Madbox99\GoogleReviews\Settings\SettingsResolver;
 
 class ReviewRepositoryFactory
 {

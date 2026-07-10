@@ -1,7 +1,7 @@
 <?php
 
-use Cegem360\GoogleReviews\Data\PlaceData;
-use Cegem360\GoogleReviews\Data\ReviewData;
+use Madbox99\GoogleReviews\Data\PlaceData;
+use Madbox99\GoogleReviews\Data\ReviewData;
 
 it('round-trips review data through array', function (): void {
     $review = new ReviewData(

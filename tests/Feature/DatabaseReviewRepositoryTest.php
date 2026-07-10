@@ -1,9 +1,9 @@
 <?php
 
-use Cegem360\GoogleReviews\Data\PlaceData;
-use Cegem360\GoogleReviews\Data\ReviewData;
-use Cegem360\GoogleReviews\Models\GoogleReview;
-use Cegem360\GoogleReviews\Repositories\DatabaseReviewRepository;
+use Madbox99\GoogleReviews\Data\PlaceData;
+use Madbox99\GoogleReviews\Data\ReviewData;
+use Madbox99\GoogleReviews\Models\GoogleReview;
+use Madbox99\GoogleReviews\Repositories\DatabaseReviewRepository;
 
 function samplePlace(): PlaceData
 {

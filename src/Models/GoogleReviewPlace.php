@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Cegem360\GoogleReviews\Models;
+namespace Madbox99\GoogleReviews\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Carbon;

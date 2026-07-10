@@ -1,9 +1,9 @@
 <?php
 
-namespace Cegem360\GoogleReviews\Console;
+namespace Madbox99\GoogleReviews\Console;
 
-use Cegem360\GoogleReviews\GoogleReviewsManager;
-use Cegem360\GoogleReviews\Settings\SettingsResolver;
+use Madbox99\GoogleReviews\GoogleReviewsManager;
+use Madbox99\GoogleReviews\Settings\SettingsResolver;
 use Illuminate\Console\Command;
 use RuntimeException;
 

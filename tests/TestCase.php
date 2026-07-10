@@ -1,8 +1,8 @@
 <?php
 
-namespace Cegem360\GoogleReviews\Tests;
+namespace Madbox99\GoogleReviews\Tests;
 
-use Cegem360\GoogleReviews\GoogleReviewsServiceProvider;
+use Madbox99\GoogleReviews\GoogleReviewsServiceProvider;
 use Filament\Actions\ActionsServiceProvider;
 use Filament\FilamentServiceProvider;
 use Filament\Forms\FormsServiceProvider;

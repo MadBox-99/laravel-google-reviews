@@ -1,6 +1,6 @@
 <?php
 
-namespace Cegem360\GoogleReviews\Settings;
+namespace Madbox99\GoogleReviews\Settings;
 
 use Illuminate\Support\Facades\DB;
 use Throwable;

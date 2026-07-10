@@ -1,10 +1,10 @@
 <?php
 
-namespace Cegem360\GoogleReviews\Http;
+namespace Madbox99\GoogleReviews\Http;
 
-use Cegem360\GoogleReviews\Data\PlaceData;
-use Cegem360\GoogleReviews\Data\ReviewData;
-use Cegem360\GoogleReviews\Settings\SettingsResolver;
+use Madbox99\GoogleReviews\Data\PlaceData;
+use Madbox99\GoogleReviews\Data\ReviewData;
+use Madbox99\GoogleReviews\Settings\SettingsResolver;
 use DateTimeImmutable;
 use Illuminate\Support\Facades\Http;
 use RuntimeException;

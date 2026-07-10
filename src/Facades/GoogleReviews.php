@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Cegem360\GoogleReviews\Facades;
+namespace Madbox99\GoogleReviews\Facades;
 
-use Cegem360\GoogleReviews\Data\PlaceData;
-use Cegem360\GoogleReviews\GoogleReviewsManager;
+use Madbox99\GoogleReviews\Data\PlaceData;
+use Madbox99\GoogleReviews\GoogleReviewsManager;
 use Illuminate\Support\Facades\Facade;
 
 /**

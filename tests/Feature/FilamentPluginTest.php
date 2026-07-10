@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use Cegem360\GoogleReviews\Filament\GoogleReviewsPlugin;
+use Madbox99\GoogleReviews\Filament\GoogleReviewsPlugin;
 use Filament\Contracts\Plugin;
 
 it('exposes a stable plugin id', function (): void {

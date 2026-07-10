@@ -1,9 +1,9 @@
 <?php
 
-use Cegem360\GoogleReviews\GoogleReviewsManager;
-use Cegem360\GoogleReviews\Http\GooglePlacesClient;
-use Cegem360\GoogleReviews\Repositories\ReviewRepositoryFactory;
-use Cegem360\GoogleReviews\Settings\SettingsResolver;
+use Madbox99\GoogleReviews\GoogleReviewsManager;
+use Madbox99\GoogleReviews\Http\GooglePlacesClient;
+use Madbox99\GoogleReviews\Repositories\ReviewRepositoryFactory;
+use Madbox99\GoogleReviews\Settings\SettingsResolver;
 use Illuminate\Support\Facades\Http;
 
 beforeEach(function (): void {

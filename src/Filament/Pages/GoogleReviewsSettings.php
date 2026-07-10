@@ -1,9 +1,9 @@
 <?php
 
-namespace Cegem360\GoogleReviews\Filament\Pages;
+namespace Madbox99\GoogleReviews\Filament\Pages;
 
 use BackedEnum;
-use Cegem360\GoogleReviews\Settings\SettingsResolver;
+use Madbox99\GoogleReviews\Settings\SettingsResolver;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Notifications\Notification;

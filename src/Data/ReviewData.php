@@ -1,6 +1,6 @@
 <?php
 
-namespace Cegem360\GoogleReviews\Data;
+namespace Madbox99\GoogleReviews\Data;
 
 use DateTimeImmutable;
 

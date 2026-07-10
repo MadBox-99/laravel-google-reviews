@@ -1,9 +1,9 @@
 <?php
 
-namespace Cegem360\GoogleReviews\Repositories;
+namespace Madbox99\GoogleReviews\Repositories;
 
-use Cegem360\GoogleReviews\Contracts\ReviewRepository;
-use Cegem360\GoogleReviews\Data\PlaceData;
+use Madbox99\GoogleReviews\Contracts\ReviewRepository;
+use Madbox99\GoogleReviews\Data\PlaceData;
 use Illuminate\Support\Facades\Cache;
 
 class CacheReviewRepository implements ReviewRepository

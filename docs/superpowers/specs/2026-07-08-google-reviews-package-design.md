@@ -21,7 +21,7 @@ cannot exceed this — it is an API limitation, not a package choice.
 - Laravel 12
 - Filament 4 (optional / soft dependency)
 - Tests: Pest v3 + Orchestra Testbench
-- Root namespace: `Cegem360\GoogleReviews`
+- Root namespace: `Madbox99\GoogleReviews`
 - Package name: `cegem360/laravel-google-reviews`
 - Service provider: **hand-written `GoogleReviewsServiceProvider`**, zero extra
   dependencies (no spatie/laravel-package-tools). It registers the config merge,

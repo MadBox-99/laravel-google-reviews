@@ -1,9 +1,9 @@
 <?php
 
-use Cegem360\GoogleReviews\Repositories\CacheReviewRepository;
-use Cegem360\GoogleReviews\Repositories\DatabaseReviewRepository;
-use Cegem360\GoogleReviews\Repositories\ReviewRepositoryFactory;
-use Cegem360\GoogleReviews\Settings\SettingsResolver;
+use Madbox99\GoogleReviews\Repositories\CacheReviewRepository;
+use Madbox99\GoogleReviews\Repositories\DatabaseReviewRepository;
+use Madbox99\GoogleReviews\Repositories\ReviewRepositoryFactory;
+use Madbox99\GoogleReviews\Settings\SettingsResolver;
 
 it('builds the database repository by default', function (): void {
     config()->set('google-reviews.driver', 'database');

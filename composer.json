@@ -1,5 +1,5 @@
 {
-    "name": "cegem360/laravel-google-reviews",
+    "name": "madbox-99/laravel-google-reviews",
     "description": "Fetch and display Google Places reviews in Laravel and Filament apps.",
     "type": "library",
     "license": "MIT",
@@ -25,21 +25,21 @@
     },
     "autoload": {
         "psr-4": {
-            "Cegem360\\GoogleReviews\\": "src/"
+            "Madbox99\\GoogleReviews\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Cegem360\\GoogleReviews\\Tests\\": "tests/"
+            "Madbox99\\GoogleReviews\\Tests\\": "tests/"
         }
     },
     "extra": {
         "laravel": {
             "providers": [
-                "Cegem360\\GoogleReviews\\GoogleReviewsServiceProvider"
+                "Madbox99\\GoogleReviews\\GoogleReviewsServiceProvider"
             ],
             "aliases": {
-                "GoogleReviews": "Cegem360\\GoogleReviews\\Facades\\GoogleReviews"
+                "GoogleReviews": "Madbox99\\GoogleReviews\\Facades\\GoogleReviews"
             }
         }
     },

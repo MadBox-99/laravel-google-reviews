@@ -1,7 +1,7 @@
 <?php
 
-use Cegem360\GoogleReviews\Http\GooglePlacesClient;
-use Cegem360\GoogleReviews\Settings\SettingsResolver;
+use Madbox99\GoogleReviews\Http\GooglePlacesClient;
+use Madbox99\GoogleReviews\Settings\SettingsResolver;
 use Illuminate\Support\Facades\Http;
 
 it('maps the places api response into a PlaceData with reviews', function (): void {

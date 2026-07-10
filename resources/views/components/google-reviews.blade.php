@@ -1,7 +1,7 @@
 @props(['placeId' => null, 'limit' => null])
 
 @php
-    $place = app(\Cegem360\GoogleReviews\GoogleReviewsManager::class)->for($placeId);
+    $place = app(\Madbox99\GoogleReviews\GoogleReviewsManager::class)->for($placeId);
     $reviews = $place?->reviews ?? [];
     if ($limit) {
         $reviews = array_slice($reviews, 0, (int) $limit);

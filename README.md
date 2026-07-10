@@ -88,7 +88,7 @@ php artisan vendor:publish --tag=google-reviews-views
 ## Programmatic access
 
 ```php
-use Cegem360\GoogleReviews\Facades\GoogleReviews;
+use Madbox99\GoogleReviews\Facades\GoogleReviews;
 
 $place = GoogleReviews::for();        // read stored/cached reviews (nullable)
 $place = GoogleReviews::refresh();    // fetch fresh from Google and store
@@ -111,7 +111,7 @@ The package ships an optional Filament 4/5 plugin that adds a **Google Reviews**
 Register it in your panel provider:
 
 ```php
-use Cegem360\GoogleReviews\Filament\GoogleReviewsPlugin;
+use Madbox99\GoogleReviews\Filament\GoogleReviewsPlugin;
 
 public function panel(Panel $panel): Panel
 {
