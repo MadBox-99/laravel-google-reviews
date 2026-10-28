@@ -25,8 +25,6 @@ return RectorConfig::configure()
         SetList::CODE_QUALITY,
         SetList::DEAD_CODE,
         SetList::TYPE_DECLARATION,
-        SetList::EARLY_RETURN,
-        SetList::INSTANCEOF,
         // Version-agnostic Laravel quality sets only — no LaravelLevelSetList
         // upgrade sets, which would rewrite to Laravel-13-only APIs and break
         // the package's Laravel 12 support.

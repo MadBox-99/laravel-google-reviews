@@ -64,9 +64,7 @@ class SettingsResolver
             return null;
         }
 
-        if ($this->dbCache === null) {
-            $this->dbCache = $this->loadDatabaseSettings();
-        }
+        $this->dbCache ??= $this->loadDatabaseSettings();
 
         $value = $this->dbCache[$key] ?? null;
 
